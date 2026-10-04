@@ -227,7 +227,6 @@ public class SistemPengelolaanPersediaanFarmasi {
                 case 5:
                     System.out.println("Terima kasih telah menggunakan Sistem Pengelolaan Persediaan Farmasi.");
                     isRunning = false;
-                    
                     break;
                 default:
                     System.out.println("Pilihan tidak valid. Silahkan masukkan angka 1-4.");
