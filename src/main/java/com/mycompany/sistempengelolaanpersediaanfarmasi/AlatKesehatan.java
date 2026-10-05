@@ -24,4 +24,9 @@ public class AlatKesehatan extends ProdukFarmasi {
         super.tampilkanInfo();
         System.out.printf(" | Kategori Alat: %-15s\n", this.kategoriAlat);
     }
+    
+    @Override
+    public void caraSimpan() {
+        System.out.println("SOP Simpan Alkes: Simpan di tempat yang kering dan higienis.");
+    }
 }

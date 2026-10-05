@@ -25,4 +25,9 @@ public class Obat extends ProdukFarmasi {
         super.tampilkanInfo();
         System.out.printf(" | Dosis: %-5s | Jenis: %-5s\n", this.dosis, this.jenis);
     }
+    
+    @Override
+    public void caraSimpan() {
+        System.out.println("SOP Simpan Obat: Simpan di tempat yang sejuk dan hindari sinar matahari langsung agar zat aktif tidak rusak.");
+    }
 }

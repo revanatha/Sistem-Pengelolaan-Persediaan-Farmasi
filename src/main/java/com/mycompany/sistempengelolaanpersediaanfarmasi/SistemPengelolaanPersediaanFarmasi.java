@@ -17,7 +17,7 @@ public class SistemPengelolaanPersediaanFarmasi {
         boolean ditemukan = false;
         for (int i = 0; i < jumlahProduk; i++) {
             if (daftarProduk[i].getNamaProduk().equalsIgnoreCase(namaProduk)) { 
-                System.out.print("- Ditemukan: ");
+                System.out.print("Ditemukan: ");
                 daftarProduk[i].tampilkanInfo();
                 ditemukan = true;
             }
@@ -26,7 +26,7 @@ public class SistemPengelolaanPersediaanFarmasi {
     }
     
     public static void cariProduk(int stok, ProdukFarmasi[] daftarProduk, int jumlahProduk) {
-        System.out.println("Mencari produk berdasarkan nama: " + stok);
+        System.out.println("Mencari produk berdasarkan stok: " + stok);
         boolean ditemukan = false;
         for (int i = 0; i < jumlahProduk; i++) {
             if (daftarProduk[i].getStok()== stok) { 
@@ -48,7 +48,11 @@ public class SistemPengelolaanPersediaanFarmasi {
                 ditemukan = true;
             }
         }
-        if (!ditemukan) System.out.println("Buku tidak ditemukan.");
+        if (!ditemukan) System.out.println("Produk tidak ditemukan.");
+    }
+    
+    public static void simulasiSimpan(ProdukFarmasi item) {
+        item.caraSimpan();
     }
 
     public static void main(String[] args) {
@@ -82,7 +86,8 @@ public class SistemPengelolaanPersediaanFarmasi {
                         System.out.println("\n-- Pilih Kategori Produk --");
                         System.out.println("1. Obat");
                         System.out.println("2. Alat Kesehatan");
-                        System.out.print("Pilihan (1/2): ");
+                        System.out.println("3. Kosmetik");
+                        System.out.print("Pilihan (1/2/3): ");
 
                         int kategori = scanner.nextInt();
                         scanner.nextLine();
@@ -95,7 +100,6 @@ public class SistemPengelolaanPersediaanFarmasi {
                             
                         System.out.print("Masukkan Harga Produk: ");
                         double harga = scanner.nextInt();
-                        
                         scanner.nextLine();
                         
                         System.out.print("Masukkan Stok Produk: ");
@@ -111,23 +115,30 @@ public class SistemPengelolaanPersediaanFarmasi {
                             
                             System.out.print("Masukkan Jenis Obat: ");
                             String jenis = scanner.nextLine();
-                            
                             scanner.nextLine();
                             
                             daftarProduk[jumlahProduk] = new Obat(idProduk, namaProduk, harga, stok, expired, dosis, jenis);
                         } else if (kategori == 2) {
                             System.out.print("Masukkan Kategori Alat: ");
                             String kategoriAlat = scanner.nextLine();
-                            
                             scanner.nextLine();
                             
                             daftarProduk[jumlahProduk] = new AlatKesehatan(idProduk, namaProduk, harga, stok, expired, kategoriAlat);
-                        } 
+                        } else if (kategori == 3) {
+                            System.out.print("Masukkan Jenis Kulit: ");
+                            String jenisKulit = scanner.nextLine();
+                            
+                            System.out.print("Masukkan Area Penggunaan: ");
+                            String areaPenggunaan = scanner.nextLine();
+                            scanner.nextLine();
+                            
+                            daftarProduk[jumlahProduk] = new Kosmetik(idProduk, namaProduk, harga, stok, expired, jenisKulit, areaPenggunaan);
+                        }
                             
                         jumlahProduk++;
                         System.out.println("Produk berhasil ditambahkan.");
                     } else {
-                        System.out.println("Maaf, kapasitas  sudah penuh!");
+                        System.out.println("Maaf, kapasitas gudang sudah penuh!");
                     }
                     
                     System.out.print("Tekan Enter untuk melanjutkan...");
@@ -142,6 +153,7 @@ public class SistemPengelolaanPersediaanFarmasi {
                         for (int i = 0; i < jumlahProduk; i++) {
                             System.out.print((i + 1) + ". ");
                             daftarProduk[i].tampilkanInfo();
+                            simulasiSimpan(daftarProduk[i]);
                             System.out.println();
                         }
                             
@@ -229,7 +241,7 @@ public class SistemPengelolaanPersediaanFarmasi {
                     isRunning = false;
                     break;
                 default:
-                    System.out.println("Pilihan tidak valid. Silahkan masukkan angka 1-4.");
+                    System.out.println("Pilihan tidak valid. Silahkan masukkan angka 1-5.");
                     scanner.nextLine();
                     break;
             }

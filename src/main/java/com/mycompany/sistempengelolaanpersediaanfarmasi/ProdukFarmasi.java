@@ -79,4 +79,8 @@ public class ProdukFarmasi {
             System.out.println("Stok sekarang: " + this.stok);
         }
     }
+    
+    public void caraSimpan() {
+        System.out.println("SOP penyimpanan belum ditemukan.");
+    }
 }
